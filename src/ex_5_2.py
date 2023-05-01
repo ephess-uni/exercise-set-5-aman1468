@@ -22,5 +22,13 @@ if __name__ == "__main__":
     OUTFILE = root_dir / "outputs" / "ex_5_2-processed.csv"
 
     # Complete the data processing steps using numpy here.
+    # Load the data from INFILE using numpy
+    data = np.loadtxt(INFILE, delimiter=",")
 
+    # Shift the data so that it has a mean of 0
+    shifted = data - np.mean(data, axis=0)
+
+    # Scale the shifted data so that it has a standard deviation of 1
+    processed = shifted / np.std(shifted, axis=0)
     # Save the output to OUTFILE using numpy routines.
+    np.savetxt(OUTFILE, processed, delimiter=",")
